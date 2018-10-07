@@ -49,14 +49,12 @@
                             </div>
                             <div class="cart-table-row-right">
                                 <div class="cart-table-actions">
-                                    {{--<a href="#">Remove</a> <br>--}}
                                     <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
 
                                         <button type="submit" class="cart-options">Remove</button>
                                     </form>
-                                    {{--<a href="#">Save for Later</a>--}}
 
                                     <form action="{{ route('cart.switchToSaveForLater', $item->rowId) }}" method="POST">
                                         {{ csrf_field() }}
@@ -65,15 +63,18 @@
                                     </form>
                                 </div>
                                 <div>
-                                    <select class="quantity">
-                                        <option selected="">1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                    <select class="quantity" data-id="{{ $item->rowId }}">
+                                        @for ($i = 1; $i < 5 + 1; $i++)
+                                            <option {{ $item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                        @endfor
+                                        {{--<option {{ $item->qty == 1 ? 'selected' : '' }}>1</option>--}}
+                                        {{--<option {{ $item->qty == 2 ? 'selected' : '' }}>2</option>--}}
+                                        {{--<option {{ $item->qty == 3 ? 'selected' : '' }}>3</option>--}}
+                                        {{--<option {{ $item->qty == 4 ? 'selected' : '' }}>4</option>--}}
+                                        {{--<option {{ $item->qty == 5 ? 'selected' : '' }}>5</option>--}}
                                     </select>
                                 </div>
-                                <div>{{ $item->model->presentPrice() }}</div>
+                                <div>{{ presentPrice($item->subtotal) }}</div>
                             </div>
                         </div> <!-- end cart-table-row -->
                     @endforeach
@@ -176,5 +177,31 @@
 
     @include('partials.might-like')
 
+@endsection
 
+@section('extra-js')
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        (function f() {
+            const classname = document.querySelectorAll('.quantity')
+
+            Array.from(classname).forEach(function (element) {
+                element.addEventListener('change', function () {
+                    const id = element.getAttribute('data-id')
+                    axios.patch(`/cart/${id}`, {
+                        quantity: this.value
+                    })
+                    .then(function (response) {
+                        // console.log(response);
+                        window.location.href = '{{ route('cart.index') }}'
+                    })
+                    .catch(function (error) {
+                        // console.log(error);
+                        window.location.href = '{{ route('cart.index') }}'
+                    });
+                })
+                
+            })
+        })();
+    </script>
 @endsection
