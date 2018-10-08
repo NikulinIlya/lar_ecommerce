@@ -11,7 +11,7 @@ class ProductsTableSeeder extends Seeder
     public function run()
     {
         // Laptops
-        for ($i=2; $i <= 30; $i++) {
+        for ($i=1; $i <= 30; $i++) {
             Product::create([
                 'name' => 'Laptop '.$i,
                 'slug' => 'laptop-'.$i,
@@ -20,8 +20,12 @@ class ProductsTableSeeder extends Seeder
                 'description' =>'Lorem '. $i . ' ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!',
 //                'image' => 'products/dummy/laptop-'.$i.'.jpg',
 //                'images' => '["products\/dummy\/laptop-2.jpg","products\/dummy\/laptop-3.jpg","products\/dummy\/laptop-4.jpg"]',
-            ]);
+            ])->categories()->attach(1);
         }
+
+        // Make Laptop 1 a Desktop as well. Just to test multiple categories
+        $product = Product::find(1);
+        $product->categories()->attach(2);
 
         // Desktops
         for ($i = 1; $i <= 9; $i++) {
@@ -35,6 +39,7 @@ class ProductsTableSeeder extends Seeder
 //                'images' => '["products\/dummy\/laptop-2.jpg","products\/dummy\/laptop-3.jpg","products\/dummy\/laptop-4.jpg"]',
             ])->categories()->attach(2);
         }
+
         // Phones
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
@@ -47,6 +52,7 @@ class ProductsTableSeeder extends Seeder
 //                'images' => '["products\/dummy\/laptop-2.jpg","products\/dummy\/laptop-3.jpg","products\/dummy\/laptop-4.jpg"]',
             ])->categories()->attach(3);
         }
+
         // Tablets
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
@@ -59,6 +65,7 @@ class ProductsTableSeeder extends Seeder
 //                'images' => '["products\/dummy\/laptop-2.jpg","products\/dummy\/laptop-3.jpg","products\/dummy\/laptop-4.jpg"]',
             ])->categories()->attach(4);
         }
+
         // TVs
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
@@ -71,6 +78,7 @@ class ProductsTableSeeder extends Seeder
 //                'images' => '["products\/dummy\/laptop-2.jpg","products\/dummy\/laptop-3.jpg","products\/dummy\/laptop-4.jpg"]',
             ])->categories()->attach(5);
         }
+
         // Cameras
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
@@ -83,6 +91,7 @@ class ProductsTableSeeder extends Seeder
 //                'images' => '["products\/dummy\/laptop-2.jpg","products\/dummy\/laptop-3.jpg","products\/dummy\/laptop-4.jpg"]',
             ])->categories()->attach(6);
         }
+
         // Appliances
         for ($i = 1; $i <= 9; $i++) {
             Product::create([
