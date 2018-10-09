@@ -39,7 +39,7 @@
                     <p>Includes multiple products, categories, a shopping cart and a checkout system with Stripe integration.</p>
                     <div class="hero-buttons">
                         <a href="#" class="button button-white">Blog Post</a>
-                        <a href="#" class="button button-white">GitHub</a>
+                        <a href="https://github.com/NikulinIlya/lar_ecommerce" class="button button-white">GitHub</a>
                     </div>
                 </div> <!-- end hero-copy -->
 
