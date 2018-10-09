@@ -104,5 +104,8 @@ class ProductsTableSeeder extends Seeder
 //                'images' => '["products\/dummy\/laptop-2.jpg","products\/dummy\/laptop-3.jpg","products\/dummy\/laptop-4.jpg"]',
             ])->categories()->attach(7);
         }
+
+        // Select random entries to be featured
+        Product::whereIn('id', [1, 12, 22, 31, 41, 43, 47, 51, 53,61, 69, 73, 80])->update(['featured' => true]);
     }
 }
