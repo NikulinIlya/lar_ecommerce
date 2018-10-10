@@ -90,26 +90,6 @@
                         <!-- Used to display form errors. -->
                         <div id="card-errors" role="alert"></div>
                     </div>
-                    {{--<div class="form-group">--}}
-                        {{--<label for="address">Address</label>--}}
-                        {{--<input type="text" class="form-control" id="address" name="address" value="">--}}
-                    {{--</div>--}}
-
-                    {{--<div class="form-group">--}}
-                        {{--<label for="cc-number">Credit Card Number</label>--}}
-                        {{--<input type="text" class="form-control" id="cc-number" name="cc-number" value="">--}}
-                    {{--</div>--}}
-
-                    {{--<div class="half-form">--}}
-                        {{--<div class="form-group">--}}
-                            {{--<label for="expiry">Expiry</label>--}}
-                            {{--<input type="text" class="form-control" id="expiry" name="expiry" placeholder="MM/DD">--}}
-                        {{--</div>--}}
-                        {{--<div class="form-group">--}}
-                            {{--<label for="cvc">CVC Code</label>--}}
-                            {{--<input type="text" class="form-control" id="cvc" name="cvc" value="">--}}
-                        {{--</div>--}}
-                    {{--</div> <!-- end half-form -->--}}
 
                     <div class="spacer"></div>
                     <button type="submit" id="complete-order" class="button-primary full-width">Complete Order</button>
@@ -123,7 +103,7 @@
                     @foreach(Cart::content() as $item)
                     <div class="checkout-table-row">
                         <div class="checkout-table-row-left">
-                            <img src="{{ asset('img/products/'.$item->model->slug.'.jpg') }}" alt="item" class="checkout-table-img">
+                            <img src="{{ productImage($item->model->image) }}" alt="item" class="checkout-table-img">
                             <div class="checkout-item-details">
                                 <div class="checkout-table-item">{{ $item->model->name }}</div>
                                 <div class="checkout-table-description">{{ $item->model->details }}</div>
