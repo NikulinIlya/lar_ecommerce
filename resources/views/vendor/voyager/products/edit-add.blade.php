@@ -84,7 +84,7 @@
                                 <ul style="list-style-type: none; padding-left: 0">
                                     @foreach($allCategories as $category)
                                         <li><label><input value="{{ $category->id }}" type="checkbox" name="category[]" style="
-                                            margin-right: 5px;">{{ $category->name }}</label></li>
+                                            margin-right: 5px;" {{ $categoriesForProduct->contains($category) ? 'checked' : '' }}>{{ $category->name }}</label></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -191,6 +191,9 @@
                 $('#confirm_delete_modal').modal('hide');
             });
             $('[data-toggle="tooltip"]').tooltip();
+
+            var price = $('input[name="price"]').val();
+            $('input[name="price"]').val(price / 100);
         });
     </script>
 @stop
