@@ -12,7 +12,7 @@ class EcommerceInstall extends Command
      *
      * @var string
      */
-    protected $signature = 'ecommerce:install';
+    protected $signature = 'ecommerce:install {--force : Do not ask for user confirmation}';
 
     /**
      * The console command description.
@@ -38,27 +38,37 @@ class EcommerceInstall extends Command
      */
     public function handle()
     {
-        if ($this->confirm('This will delete ALL your current data and install the default dummy data. Are you sure?')) {
-            File::deleteDirectory(public_path('storage/products/dummy'));
-            $this->callSilent('storage:link');
-            $copySuccess = File::copyDirectory(public_path('img/products'), public_path('storage/products/dummy'));
-            if ($copySuccess) {
-                $this->info('Images successfully copied to storage folder.');
+        if ($this->option('force')) {
+            $this->proceed();
+        } else {
+            if ($this->confirm('This will delete ALL your current data and install the default dummy data. Are you sure?')) {
+                $this->proceed();
             }
+        }
+    }
 
-            $this->info('Dummy data installed.');
+    protected function proceed()
+    {
+        File::deleteDirectory(public_path('storage/products/dummy'));
+        $this->callSilent('storage:link');
+        $copySuccess = File::copyDirectory(public_path('img/products'), public_path('storage/products/dummy'));
+        if ($copySuccess) {
+            $this->info('Images successfully copied to storage folder.');
         }
 
         $this->call('migrate:fresh', [
             '--seed' => true,
+            '--force' => true,
         ]);
 
         $this->call('db:seed', [
             '--class' => 'VoyagerDatabaseSeeder',
+            '--force' => true,
         ]);
 
         $this->call('db:seed', [
             '--class' => 'VoyagerDummyDatabaseSeeder',
+            '--force' => true,
         ]);
 
         $this->call('db:seed', [
@@ -112,6 +122,5 @@ class EcommerceInstall extends Command
         ]);
 
         $this->info('Dummy data installed');
-
     }
 }
