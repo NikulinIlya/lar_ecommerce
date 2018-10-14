@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CheckoutRequest;
+use App\Mail\OrderPlaced;
 use App\Order;
 use App\OrderProduct;
 use Cart;
 use Cartalyst\Stripe\Exception\CardErrorException;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Http\Request;
+use Mail;
 
 class CheckoutController extends Controller
 {
@@ -61,7 +63,8 @@ class CheckoutController extends Controller
                 ],
             ]);
 
-            $this->addToOrdersTables($request, null);
+            $order = $this->addToOrdersTables($request, null);
+            Mail::send(new OrderPlaced($order));
 
             // Successful
             Cart::instance('default')->destroy();
@@ -103,6 +106,8 @@ class CheckoutController extends Controller
                 'quantity' => $item->qty
             ]);
         }
+
+        return $order;
     }
 
     private function getNumbers()
