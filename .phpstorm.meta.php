@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2018-10-15 11:27:23.
+    * Generated on 2018-10-15 11:44:09.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -31,6 +31,7 @@ namespace PHPSTORM_META {
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
         'Larapack\Hooks\Migrator' => \Larapack\Hooks\Migrator::class,
+        'Laravel\Scout\EngineManager' => \Laravel\Scout\EngineManager::class,
         'arrilot.async-widget' => \Arrilot\Widgets\Factories\AsyncWidgetFactory::class,
         'arrilot.widget' => \Arrilot\Widgets\Factories\WidgetFactory::class,
         'arrilot.widget-group-collection' => \Arrilot\Widgets\WidgetGroupCollection::class,
@@ -173,6 +174,7 @@ namespace PHPSTORM_META {
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
         'Larapack\Hooks\Migrator' => \Larapack\Hooks\Migrator::class,
+        'Laravel\Scout\EngineManager' => \Laravel\Scout\EngineManager::class,
         'arrilot.async-widget' => \Arrilot\Widgets\Factories\AsyncWidgetFactory::class,
         'arrilot.widget' => \Arrilot\Widgets\Factories\WidgetFactory::class,
         'arrilot.widget-group-collection' => \Arrilot\Widgets\WidgetGroupCollection::class,
@@ -315,6 +317,7 @@ namespace PHPSTORM_META {
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
         'Larapack\Hooks\Migrator' => \Larapack\Hooks\Migrator::class,
+        'Laravel\Scout\EngineManager' => \Laravel\Scout\EngineManager::class,
         'arrilot.async-widget' => \Arrilot\Widgets\Factories\AsyncWidgetFactory::class,
         'arrilot.widget' => \Arrilot\Widgets\Factories\WidgetFactory::class,
         'arrilot.widget-group-collection' => \Arrilot\Widgets\WidgetGroupCollection::class,
@@ -457,6 +460,7 @@ namespace PHPSTORM_META {
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
         'Larapack\Hooks\Migrator' => \Larapack\Hooks\Migrator::class,
+        'Laravel\Scout\EngineManager' => \Laravel\Scout\EngineManager::class,
         'arrilot.async-widget' => \Arrilot\Widgets\Factories\AsyncWidgetFactory::class,
         'arrilot.widget' => \Arrilot\Widgets\Factories\WidgetFactory::class,
         'arrilot.widget-group-collection' => \Arrilot\Widgets\WidgetGroupCollection::class,
@@ -599,6 +603,7 @@ namespace PHPSTORM_META {
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
         'Larapack\Hooks\Migrator' => \Larapack\Hooks\Migrator::class,
+        'Laravel\Scout\EngineManager' => \Laravel\Scout\EngineManager::class,
         'arrilot.async-widget' => \Arrilot\Widgets\Factories\AsyncWidgetFactory::class,
         'arrilot.widget' => \Arrilot\Widgets\Factories\WidgetFactory::class,
         'arrilot.widget-group-collection' => \Arrilot\Widgets\WidgetGroupCollection::class,
@@ -741,6 +746,7 @@ namespace PHPSTORM_META {
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
         'Larapack\Hooks\Migrator' => \Larapack\Hooks\Migrator::class,
+        'Laravel\Scout\EngineManager' => \Laravel\Scout\EngineManager::class,
         'arrilot.async-widget' => \Arrilot\Widgets\Factories\AsyncWidgetFactory::class,
         'arrilot.widget' => \Arrilot\Widgets\Factories\WidgetFactory::class,
         'arrilot.widget-group-collection' => \Arrilot\Widgets\WidgetGroupCollection::class,
@@ -883,6 +889,7 @@ namespace PHPSTORM_META {
         'Illuminate\Session\Middleware\StartSession' => \Illuminate\Session\Middleware\StartSession::class,
         'Larapack\Hooks\Hooks' => \Larapack\Hooks\Hooks::class,
         'Larapack\Hooks\Migrator' => \Larapack\Hooks\Migrator::class,
+        'Laravel\Scout\EngineManager' => \Laravel\Scout\EngineManager::class,
         'arrilot.async-widget' => \Arrilot\Widgets\Factories\AsyncWidgetFactory::class,
         'arrilot.widget' => \Arrilot\Widgets\Factories\WidgetFactory::class,
         'arrilot.widget-group-collection' => \Arrilot\Widgets\WidgetGroupCollection::class,
