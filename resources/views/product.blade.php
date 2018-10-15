@@ -8,15 +8,31 @@
 
 @section('content')
 
-    <div class="breadcrumbs">
-        <div class="container">
-            <a href="/">Home</a>
-            <i class="fa fa-chevron-right breadcrumb-separator"></i>
-            <a href="{{ route('shop.index') }}">Shop</a>
-            <i class="fa fa-chevron-right breadcrumb-separator"></i>
-            <span>Macbook Pro</span>
-        </div>
-    </div> <!-- end breadcrumbs -->
+    @component('components.breadcrumbs')
+        <a href="/">Home</a>
+        <i class="fa fa-chevron-right breadcrumb-separator"></i>
+        <a href="{{ route('shop.index') }}">Shop</a>
+        <i class="fa fa-chevron-right breadcrumb-separator"></i>
+        <span>{{ $product->name }}</span>
+    @endcomponent
+
+    <div class="container">
+        @if(session()->has('success_message'))
+            <div class="alert alert-success">
+                {{ session()->get('success_message') }}
+            </div>
+        @endif
+
+        @if(count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
 
     <div class="product-section container">
         <div>
@@ -24,9 +40,6 @@
                 <img src="{{ productImage($product->image) }}" alt="product" class="active" id="currentImage">
             </div>
             <div class="product-section-images">
-                {{--<div class="product-section-thumbnail">--}}
-                    {{--<img src="{{ asset('') }}" alt="product">--}}
-                {{--</div>--}}
 
                 <div class="product-section-thumbnail selected">
                     <img src="{{ productImage($product->image) }}" alt="product">
@@ -51,7 +64,6 @@
                 {!! $product->description !!}
             </p>
 
-
             <p>&nbsp;</p>
 
             {{--<a href="#" class="button">Add to Cart</a>--}}
@@ -67,7 +79,6 @@
 
     @include('partials.might-like')
 
-
 @endsection
 
 @section('extra-js')
@@ -80,16 +91,13 @@
 
             function thumbnailClick(e) {
                 currentImage.classList.remove('active');
-
                 currentImage.addEventListener('transitionend', () => {
                     currentImage.src = this.querySelector('img').src;
                     currentImage.classList.add('active');
-                })
-
+                });
 
                 images.forEach((element) => element.classList.remove('selected'));
                 this.classList.add('selected');
-
             }
         })();
     </script>

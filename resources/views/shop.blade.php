@@ -7,14 +7,30 @@
 @endsection
 
 @section('content')
+    
+    @component('components.breadcrumbs')
+        <a href="/">Home</a>
+        <i class="fa fa-chevron-right breadcrumb-separator"></i>
+        <span>Shop</span>
+    @endcomponent
 
-    <div class="breadcrumbs">
-        <div class="container">
-            <a href="/">Home</a>
-            <i class="fa fa-chevron-right breadcrumb-separator"></i>
-            <span>Shop</span>
-        </div>
-    </div> <!-- end breadcrumbs -->
+    <div class="container">
+        @if(session()->has('success_message'))
+            <div class="alert alert-success">
+                {{ session()->get('success_message') }}
+            </div>
+        @endif
+
+        @if(count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
 
     <div class="products-section container">
         <div class="sidebar">
@@ -24,14 +40,8 @@
                     <li class="{{ setActiveCategory($category->slug) }}"><a href="{{ route('shop.index', ['category' => $category->slug]) }}">{{ $category->name }}</a></li>
                 @endforeach
             </ul>
-
-            {{--<h3>By Price</h3>--}}
-            {{--<ul>--}}
-                {{--<li><a href="#">$0 - $700</a></li>--}}
-                {{--<li><a href="#">$700 - $2500</a></li>--}}
-                {{--<li><a href="#">$2500+</a></li>--}}
-            {{--</ul>--}}
         </div> <!-- end sidebar -->
+
         <div>
             <div class="products-header">
                 <h1 class="stylish-heading">{{ $categoryName }}</h1>
@@ -43,7 +53,6 @@
             </div>
 
             <div class="products text-center">
-
                 @forelse($products as $product)
                     <div class="product">
                         <a href="{{ route('shop.show', $product->slug) }}"><img src="{{ productImage($product->image) }}" alt="product"></a>
@@ -53,13 +62,11 @@
                 @empty
                     <div style="text-align: left">No items found</div>
                 @endforelse
-
             </div> <!-- end products -->
+
             <div class="spacer"></div>
-            {{--{{ $products->links() }}--}}
             {{ $products->appends(request()->input())->links() }}
         </div>
     </div>
-
 
 @endsection

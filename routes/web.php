@@ -38,3 +38,5 @@ Route::get('/mailable', function () {
 
     return new App\Mail\OrderPlaced($order);
 });
+
+Route::get('/search', 'ShopController@search')->name('search');
