@@ -137,12 +137,26 @@
 
     }
 
-
     .checkout-section {
         grid-template-columns: 1fr;
 
         .checkout-table-container {
             margin-left: 10px;
+        }
+    }
+
+    .search-results-container-algolia {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-pages {
+        margin: 50px auto;
+        grid-template-columns: 1fr;
+        grid-gap: 40px;
+
+        .auth-right {
+            border-left: none;
+            padding-left: 20px;
         }
     }
 }
