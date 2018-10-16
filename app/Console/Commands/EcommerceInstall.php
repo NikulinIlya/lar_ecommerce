@@ -49,17 +49,30 @@ class EcommerceInstall extends Command
 
     protected function proceed()
     {
-        File::deleteDirectory(public_path('storage/products/dummy'));
+        File::deleteDirectory(public_path('storage/products'));
+        File::deleteDirectory(public_path('storage/settings'));
+        File::deleteDirectory(public_path('storage/pages'));
+        File::deleteDirectory(public_path('storage/posts'));
+        File::deleteDirectory(public_path('storage/users'));
+
         $this->callSilent('storage:link');
         $copySuccess = File::copyDirectory(public_path('img/products'), public_path('storage/products/dummy'));
         if ($copySuccess) {
             $this->info('Images successfully copied to storage folder.');
         }
 
-        $this->call('migrate:fresh', [
-            '--seed' => true,
-            '--force' => true,
-        ]);
+        File::copyDirectory(public_path('img/pages'), public_path('storage/pages'));
+        File::copyDirectory(public_path('img/posts'), public_path('storage/posts'));
+        File::copyDirectory(public_path('img/users'), public_path('storage/users'));
+
+        try {
+            $this->call('migrate:fresh', [
+                '--seed' => true,
+                '--force' => true,
+            ]);
+        } catch (\Exception $e) {
+            $this->error('Algolia credentials incorrect. Your products table is NOT seeded correctly. If you are not using Algolia, remove Searchable trait from App\Product');
+        }
 
         $this->call('db:seed', [
             '--class' => 'VoyagerDatabaseSeeder',
@@ -120,6 +133,18 @@ class EcommerceInstall extends Command
             '--class' => 'SettingsTableSeederCustom',
             '--force' => true,
         ]);
+
+        try {
+            $this->call('scout:flush', [
+                'model' => 'App\\Product',
+            ]);
+
+            $this->call('scout:import', [
+                'model' => 'App\\Product',
+            ]);
+        } catch (\Exception $e) {
+            $this->error('Algolia credentials incorrect. Check your .env file.');
+        }
 
         $this->info('Dummy data installed');
     }
