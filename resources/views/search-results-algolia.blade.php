@@ -34,32 +34,33 @@
         @endif
     </div>
 
-    <div class="search-results-container container">
-        <h1>Search Results</h1>
+    <div class="container">
+        <div class="search-results-container-algolia">
+            <div>
+                <h2>Search</h2>
+                <div id="search-box">
+                    <!-- SearchBox widget will appear here -->
+                </div>
 
-        <div id="search-box">
-            <!-- SearchBox widget will appear here -->
-        </div>
+                <div id="stats-container"></div>
 
-        <div id="stats-container">
+                <h2>Categories</h2>
+                <div id="refinement-list">
+                    <!-- RefinementList widget will appear here -->
+                </div>
+            </div>
 
-        </div>
+            <div>
+                <div id="hits">
+                    <!-- Hits widget will appear here -->
+                </div>
 
-        <div id="refinement-list">
-            <!-- RefinementList widget will appear here -->
-        </div>
-
-        <div id="hits">
-            <!-- Hits widget will appear here -->
-        </div>
-
-        <div id="pagination">
-            <!-- Pagination widget will appear here -->
-        </div>
-
-
-    </div> <!-- end search-container -->
-
+                <div id="pagination">
+                    <!-- Pagination widget will appear here -->
+                </div>
+            </div>
+        </div> <!-- end search-container -->
+    </div>
 @endsection
 
 @section('extra-js')

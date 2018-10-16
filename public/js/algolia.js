@@ -36,7 +36,7 @@
         enterPressed = true;
     }).on('keyup', function(event) {
         if (event.keyCode == 13 && !enterPressed) {
-            window.location.href = window.location.origin + '/search-algolia?query=' + document.getElementById('aa-search-input').value;
+            window.location.href = window.location.origin + '/search-algolia?q=' + document.getElementById('aa-search-input').value;
         }
     });
 })();
