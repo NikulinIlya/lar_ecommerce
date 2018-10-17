@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-
 use Cart;
 use Illuminate\Http\Request;
 
@@ -17,7 +16,13 @@ class CartController extends Controller
     public function index()
     {
         $mightAlsoLike = Product::mightAlsoLike()->get();
-        return view('cart')->with('mightAlsoLike', $mightAlsoLike);
+        return view('cart')->with([
+            'mightAlsoLike' => $mightAlsoLike,
+            'discount' => getNumbers()->get('discount'),
+            'newSubtotal' => getNumbers()->get('newSubtotal'),
+            'newTax' => getNumbers()->get('newTax'),
+            'newTotal' => getNumbers()->get('newTotal')
+        ]);
     }
 
     /**
