@@ -1,8 +1,14 @@
 <?php
+use Carbon\Carbon;
 
 function presentPrice($price)
 {
     return '$'.number_format($price / 100, 2);
+}
+
+function presentDate($date)
+{
+    return Carbon::parse($date)->format('M d, Y');
 }
 
 function setActiveCategory($category, $output = 'active')
